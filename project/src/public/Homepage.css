@@ -1,0 +1,435 @@
+:root {
+  --primary-green: #2ecc71;
+  --secondary-green: #27ae60;
+  --accent-orange: #ff5722;
+  --gray-bg: #f9f9f9;
+  --gray-border: #ddd;
+  --font-main: Arial, sans-serif;
+}
+
+/* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Header - Full Width */
+header {
+  background-color: #fff;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  justify-content: flex-start;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  background-color: var(--gray-bg);
+  border-color: var(--primary-green);
+}
+
+.search-bar input {
+  padding: 8px 40px 8px 16px;
+  border: 1px solid var(--gray-border);
+  border-radius: 9999px;
+  width: 250px;
+  transition: width 0.3s ease;
+}
+
+.search-bar input:focus {
+  width: 350px;
+}
+
+.search-bar .fas {
+  pointer-events: none;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart-icon {
+  height: 20px;
+}
+
+.cart-count {
+  position: relative;
+  top: -4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--accent-orange);
+}
+
+.login-btn {
+  background-color: var(--primary-green);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: var(--secondary-green);
+}
+
+/* Banner - Full Width */
+.banner {
+  background-image: url("/src/pics/main_banner_bg.png");
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  text-align: center;
+  color: white;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.banner h1 {
+  font-size: 48px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.btn {
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.shop-now {
+  background-color: var(--primary-green);
+  color: #fff;
+  border: none;
+}
+
+.explore-deals {
+  background-color: transparent;
+  color: var(--primary-green);
+  border: 2px solid var(--primary-green);
+}
+
+/* Categories - Normal Width (Centered Content) */
+.categories {
+  padding: 50px 0;
+}
+
+.categories h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.category-item {
+  text-align: center;
+  background-color: var(--gray-bg);
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 150px;
+}
+
+.category-item p {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ============ BEST SELLERS SECTION ============ */
+
+.best-sellers {
+  background-color: #fff;
+  padding: 60px 0;
+}
+
+.best-sellers h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #2ecc71;
+  text-align: center;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.category {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+.rating {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #f1c40f;
+}
+
+.price span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #27ae60;
+  margin-right: 10px;
+}
+
+.price del {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #27ae60;
+}
+
+/* ============ WHY WE ARE THE BEST SECTION ============ */
+
+/* Why We Are the Best Section */
+/* Why We Are the Best Section */
+.why-best {
+  background-color: #f9f9f9;
+  padding: 60px 0;
+}
+
+.why-best h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #2ecc71;
+}
+
+.image-section {
+  position: relative;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.fast-delivery-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fast-delivery-badge svg {
+  color: #2ecc71;
+}
+
+.fast-delivery-badge p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.benefits-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.benefit-item img {
+  width: 30px;
+  height: auto;
+}
+
+.benefit-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2ecc71;
+  margin-bottom: 5px;
+}
+
+.benefit-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* .why-best {
+  background-color: #f9f9f9;
+  padding: 60px 0;
+}
+
+.why-best h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #2ecc71;
+}
+
+.image-section {
+  position: relative;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.fast-delivery-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fast-delivery-badge svg {
+  color: #2ecc71;
+}
+
+.fast-delivery-badge p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.benefits-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.benefit-item img {
+  width: 30px;
+  height: auto;
+}
+
+.benefit-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2ecc71;
+  margin-bottom: 5px;
+}
+
+.benefit-item p {
+  font-size: 14px;
+  color: #555;
+} */
