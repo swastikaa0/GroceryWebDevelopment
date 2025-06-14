@@ -1,81 +1,87 @@
-import React from "react";
-import "./LoginPage.css"; 
-export default function LoginPage() {
-  return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+// import React from "react";
+
+// import "./LoginPage.css"; 
+// export default function LoginPage() {
+//   return (
+//     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
      
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/src/pics/main_banner_bg.png')" }}
-      ></div>
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+//       <div
+//         className="absolute inset-0 bg-cover bg-center"
+//         style={{ backgroundImage: "url('/src/pics/main_banner_bg.png')" }}
+//       ></div>
+//       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       
-      <div className="relative z-10 w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-green-700 mb-6">Welcome Back</h2>
-        <p className="text-center text-gray-500 mb-6">Login to continue shopping</p>
+//       <div className="relative z-10 w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
+//         <h2 className="text-3xl font-bold text-center text-green-700 mb-6">Welcome Back</h2>
+//         <p className="text-center text-gray-500 mb-6">Login to continue shopping</p>
 
         
-        <form className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
-            />
-          </div>
+//         <form className="space-y-4">
+//           <div>
+//             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+//               Email Address
+//             </label>
+//             <input
+//               type="email"
+//               id="email"
+//               placeholder="Enter your email"
+//               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+//               required
+//             />
+//           </div>
 
          
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
-            />
-            <a href="#" className="text-xs text-green-600 hover:underline mt-1 block text-right">
-              Forgot Password?
-            </a>
-          </div>
+//           <div>
+//             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+//               Password
+//             </label>
+//             <input
+//               type="password"
+//               id="password"
+//               placeholder="Enter your password"
+//               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+//               required
+//             />
+//             <a href="#" className="text-xs text-green-600 hover:underline mt-1 block text-right">
+//               Forgot Password?
+//             </a>
+//           </div>
 
         
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300"
-          >
-            Log In
-          </button>
-        </form>
+//           <button
+//             type="submit"
+//             className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300"
+//           >
+//             Log In
+//           </button>
+//         </form>
 
        
-        <div className="my-6 flex items-center">
-          <hr className="flex-grow border-t border-gray-300" />
-          <span className="mx-4 text-gray-500">or</span>
-          <hr className="flex-grow border-t border-gray-300" />
-        </div>
+//         <div className="my-6 flex items-center">
+//           <hr className="flex-grow border-t border-gray-300" />
+//           <span className="mx-4 text-gray-500">or</span>
+//           <hr className="flex-grow border-t border-gray-300" />
+//         </div>
 
         
 
        
-        <p className="mt-6 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
-          <a href="/register" className="text-green-600 hover:underline font-medium">
-            Create Account
-          </a>
-        </p>
-      </div>
-    </div>
-  );
-}
+//          <p className="mt-6 text-center text-sm text-gray-600">
+//           Don't have an account?{" "}
+//           <a href="/register" className="text-green-600 hover:underline font-medium">
+//             Create Account
+//           </a>
+//         </p> 
+
+        
+
+        
+//       </div>
+//     </div>
+//   );
+// }
+
 
 
 
@@ -165,3 +171,124 @@ export default function LoginPage() {
 //     </div>
 //   );
 // }
+
+
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./LoginPage.css";
+
+export default function LoginPage() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your authentication logic here
+    console.log("Login submitted:", formData);
+    // After successful login:
+    navigate("/"); // Redirect to homepage
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      {/* Background with overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ 
+          backgroundImage: "url('/src/pics/main_banner_bg.png')",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover"
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+
+      {/* Login form container */}
+      <div className="relative z-10 w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
+        <h2 className="text-3xl font-bold text-center text-green-700 mb-6">Welcome Back</h2>
+        <p className="text-center text-gray-500 mb-6">Login to continue shopping</p>
+
+        {/* Login form */}
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              required
+              autoComplete="email"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              required
+              autoComplete="current-password"
+            />
+            <Link 
+              to="/forgot-password" 
+              className="text-xs text-green-600 hover:underline mt-1 block text-right"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300"
+          >
+            Log In
+          </button>
+        </form>
+
+        {/* Divider */}
+        <div className="my-6 flex items-center">
+          <hr className="flex-grow border-t border-gray-300" />
+          <span className="mx-4 text-gray-500">or</span>
+          <hr className="flex-grow border-t border-gray-300" />
+        </div>
+
+        {/* Registration link */}
+        <p className="mt-6 text-center text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link 
+            to="/RegisterPage" 
+            className="text-green-600 hover:underline font-medium"
+          >
+            Create Account
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+

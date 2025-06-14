@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
 
+
 function Homepage() {
+
+   const navigate = useNavigate();
+
   return (
     <>
       {/* Header - Full Width */}
@@ -49,9 +54,13 @@ function Homepage() {
               />
               <span className="text-green-600 font-bold">0</span>
             </div>
-            <button className="login-btn bg-green-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700">
+            <button 
+            onClick={()=>navigate('/LoginPage')} 
+            className="login-btn bg-green-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700">
               Login
             </button>
+
+            
           </div>
         </div>
       </header>
@@ -160,7 +169,7 @@ function Homepage() {
               </div>
               <div className="price flex items-center mb-2">
                 <span className="text-lg font-bold">$35</span>
-                <del className="text-sm text-gray-500 ml-2">$40</del>
+                <del className="text-sm text-gray-500 ml-2">$40</del> 
               </div>
               <button className="add-button bg-green-600 text-white px-4 py-2 rounded font-semibold hover:bg-green-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -324,76 +333,7 @@ function Homepage() {
     </div>
   </div>
 </section>
-      {/* <section className="why-best py-10">
-        <div className="container mx-auto flex flex-col md:flex-row gap-8">
-          
-          <div className="image-section flex-1">
-            <img
-              src="src/pics/bottom_banner_image.png"
-              alt="Why We Are the Best"
-              className="w-full h-96 object-cover"
-            />
-            <div className="fast-delivery-badge absolute bottom-4 left-4 bg-white p-2 rounded shadow-md">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-truck" viewBox="0 0 16 16">
-                <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5v2A1.5 1.5 0 0 1 10.5 7H6v-1A1.5 1.5 0 0 1 7.5 5H15a.5.5 0 0 1 .5.5v19a.5.5 0 0 1-.5.5h-9A.5.5 0 0 1 1 20v-19a.5.5 0 0 1 .5-.5H3v1a1.5 1.5 0 0 1-1.5 1.5h-2zM3 18v-6h8v6H3zm8-10v6h-8V8h8zm-9 8h9V8H3v8z" />
-              </svg>
-              <div>
-                <p className="text-lg font-bold">Fast Delivery</p>
-                <p className="text-sm">In 30 Min</p>
-              </div>
-            </div>
-          </div>
-
-          
-          <div className="benefits-section flex-1">
-            <h2 className="text-2xl font-bold mb-6 text-green-800">Why We Are the Best?</h2>
-            <div className="benefit-item flex items-center mb-4">
-              <img
-                src="src\pics\delivery_truck_icon.svg"
-                alt="Delivery Icon"
-                className="h-8 w-8 mr-2"
-              />
-              <div>
-                <h3 className="text-lg font-bold">Fastest Delivery</h3>
-                <p>Groceries delivered in under 30 minutes.</p>
-              </div>
-            </div>
-            <div className="benefit-item flex items-center mb-4">
-              <img
-                src="src\pics\leaf_icon.svg"
-                alt="Fresh Icon"
-                className="h-8 w-8 mr-2"
-              />
-              <div>
-                <h3 className="text-lg font-bold">Freshness Guaranteed</h3>
-                <p>Fresh produce straight from the source.</p>
-              </div>
-            </div>
-            <div className="benefit-item flex items-center mb-4">
-              <img
-                src="src\pics\coin_icon.svg"
-                alt="Price Icon"
-                className="h-8 w-8 mr-2"
-              />
-              <div>
-                <h3 className="text-lg font-bold">Affordable Prices</h3>
-                <p>Quality groceries at unbeatable prices.</p>
-              </div>
-            </div>
-            <div className="benefit-item flex items-center">
-              <img
-                src="src\pics\trust_icon.svg"
-                alt="Trust Icon"
-                className="h-8 w-8 mr-2"
-              />
-              <div>
-                <h3 className="text-lg font-bold">Trusted by Thousands</h3>
-                <p>Loved by 10,000+ happy customers.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
+     
     </>
   );
 }
