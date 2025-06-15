@@ -175,29 +175,37 @@
 
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import "./LoginPage.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [formData, setFormData] = React.useState({
-    email: "",
-    password: ""
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: ""
+    }
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your authentication logic here
-    console.log("Login submitted:", formData);
-    // After successful login:
-    navigate("/"); // Redirect to homepage
+  const onSubmit = (data) => {
+    const storedUser = JSON.parse(localStorage.getItem("user") || "{}")
+    console.log("Login submitted:", data);
+    console.log(storedUser);
+    if(
+      data.username === storedUser.username &&
+      data.password === storedUser.password
+    ){
+      alert("Login sucessful");
+      navigate("/Homepage");
+    }else {
+      alert("Invalid credentials");
+    }
+    // Add authentication logic here
+    navigate("/"); // Redirect after login
   };
 
   return (
@@ -219,40 +227,52 @@ export default function LoginPage() {
         <h2 className="text-3xl font-bold text-center text-green-700 mb-6">Welcome Back</h2>
         <p className="text-center text-gray-500 mb-6">Login to continue shopping</p>
 
-        {/* Login form */}
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        {/* Login form - now using react-hook-form */}
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+          {/* Email Field */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email Address
             </label>
             <input
-              type="email"
               id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              type="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
-              autoComplete="email"
+              {...register("email", { 
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address"
+                }
+              })}
             />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+            )}
           </div>
 
+          {/* Password Field */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
             <input
-              type="password"
               id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              type="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
-              autoComplete="current-password"
+              {...register("password", { 
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters"
+                }
+              })}
             />
+            {errors.password && (
+              <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+            )}
             <Link 
               to="/forgot-password" 
               className="text-xs text-green-600 hover:underline mt-1 block text-right"
@@ -269,14 +289,13 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Divider */}
+        {/* Divider and registration link remain the same */}
         <div className="my-6 flex items-center">
           <hr className="flex-grow border-t border-gray-300" />
           <span className="mx-4 text-gray-500">or</span>
           <hr className="flex-grow border-t border-gray-300" />
         </div>
 
-        {/* Registration link */}
         <p className="mt-6 text-center text-sm text-gray-600">
           Don't have an account?{" "}
           <Link 
@@ -290,5 +309,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-

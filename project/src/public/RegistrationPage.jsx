@@ -101,38 +101,36 @@
 //     </div>
 //   );
 // }
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import "./Registration.css"; // Make sure to create this CSS file
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    }
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const onSubmit = (data) => {
+    localStorage.setItem("user",JSON.stringify(data));
+    alert("Registered sucessfully");
+    console.log("Registration data:", data);
+    navigate("/LoginPage");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add validation (e.g., password matching)
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
-      return;
-    }
-    // Add registration logic here
-    console.log("Registration data:", formData);
-    // After successful registration:
-    navigate("/login"); // Redirect to login page
-  };
+  // Watch password field for matching validation
+  const password = watch("password");
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
@@ -157,23 +155,31 @@ export default function RegisterPage() {
         <p className="text-center text-gray-500 mb-6">Sign up to start shopping</p>
 
         {/* Form */}
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           {/* Full Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
               Full Name
             </label>
             <input
-              type="text"
               id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              type="text"
               placeholder="Enter your full name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
+              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-green-500"
+              }`}
+              {...register("name", { 
+                required: "Full name is required",
+                minLength: {
+                  value: 3,
+                  message: "Name must be at least 3 characters"
+                }
+              })}
               autoComplete="name"
             />
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+            )}
           </div>
 
           {/* Email */}
@@ -182,16 +188,24 @@ export default function RegisterPage() {
               Email Address
             </label>
             <input
-              type="email"
               id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              type="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
+              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-green-500"
+              }`}
+              {...register("email", { 
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address"
+                }
+              })}
               autoComplete="email"
             />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+            )}
           </div>
 
           {/* Password */}
@@ -200,16 +214,24 @@ export default function RegisterPage() {
               Password
             </label>
             <input
-              type="password"
               id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+              type="password"
               placeholder="Create a password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
+              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.password ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-green-500"
+              }`}
+              {...register("password", { 
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters"
+                }
+              })}
               autoComplete="new-password"
             />
+            {errors.password && (
+              <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+            )}
           </div>
 
           {/* Confirm Password */}
@@ -218,16 +240,22 @@ export default function RegisterPage() {
               Confirm Password
             </label>
             <input
-              type="password"
               id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              type="password"
               placeholder="Confirm your password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
+              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.confirmPassword ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-green-500"
+              }`}
+              {...register("confirmPassword", { 
+                required: "Please confirm your password",
+                validate: value => 
+                  value === password || "Passwords do not match"
+              })}
               autoComplete="new-password"
             />
+            {errors.confirmPassword && (
+              <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+            )}
           </div>
 
           {/* Submit Button */}
@@ -249,7 +277,7 @@ export default function RegisterPage() {
         {/* Login Link */}
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to="/LoginPage " className="text-green-600 hover:underline font-medium">
+          <Link to="/LoginPage" className="text-green-600 hover:underline font-medium">
             Log In
           </Link>
         </p>
