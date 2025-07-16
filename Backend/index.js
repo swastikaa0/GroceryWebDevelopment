@@ -18,8 +18,12 @@
 import express from 'express'
 import bodyParser  from 'body-parser';
 import { db } from './src/Database/index.js';
-import {userRouter} from './src/route/userRoute.js'
 import dotenv from 'dotenv'
+// import { userRouter } from './src/route/userRoute.js';
+// import { userRouter } from './src/route/userRoute.js';
+
+import {userRouter} from './src/route/index.js'
+
 
 dotenv.config();
 
