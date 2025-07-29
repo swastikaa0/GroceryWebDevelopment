@@ -10,6 +10,7 @@ import AdminRoute from './components/AdminRoute'
 import DailyGrocerLanding from './pages/DailyGrocerLanding'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import ForgotPassword from './pages/ForgotPassword'
 import Home from './pages/Home'
 import BuyerHome from './pages/BuyerHome'
 import Products from './pages/Products'
@@ -53,6 +54,7 @@ const App = () => {
               <Route path="/" element={<DailyGrocerLanding />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
               
               {/* Protected Routes for Users */}
               <Route path="/home" element={
