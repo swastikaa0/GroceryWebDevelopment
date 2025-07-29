@@ -73,7 +73,7 @@ const Header = () => {
                       Products
                     </Link>
                     <Link to="/categories" className="text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                      Categories
+                      About Us
                     </Link>
                     <Link to="/orders" className="text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                       My Orders
@@ -90,9 +90,9 @@ const Header = () => {
                 <a href="/#products" className="text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   Products
                 </a>
-                <a href="/#categories" className="text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                  Categories
-                </a>
+                                    <a href="/#categories" className="text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                      About Us
+                    </a>
                 <a href="/#about" className="text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   About
                 </a>
@@ -271,7 +271,7 @@ const Header = () => {
                         Products
                       </Link>
                       <Link to="/categories" className="block text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-base font-medium">
-                        Categories
+                        About Us
                       </Link>
                       <Link to="/orders" className="block text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-base font-medium">
                         My Orders
@@ -309,9 +309,9 @@ const Header = () => {
                   <a href="/#products" className="block text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-base font-medium">
                     Products
                   </a>
-                  <a href="/#categories" className="block text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-base font-medium">
-                    Categories
-                  </a>
+                                        <a href="/#categories" className="block text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-base font-medium">
+                        About Us
+                      </a>
                   <a href="/#about" className="block text-[#0A400C] hover:text-[#B0DB9C] px-3 py-2 rounded-md text-base font-medium">
                     About
                   </a>

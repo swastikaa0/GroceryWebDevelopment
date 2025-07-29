@@ -21,6 +21,7 @@ import AdminHome from './pages/AdminHome'
 import AdminUsers from './pages/admin/AdminUsers'
 import AdminProducts from './pages/admin/AdminProducts'
 import AdminOrders from './pages/admin/AdminOrders'
+import AboutUs from './pages/AboutUs'
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -87,6 +88,11 @@ const App = () => {
               <Route path="/orders/:id" element={
                 <ProtectedRoute>
                   <OrderDetail />
+                </ProtectedRoute>
+              } />
+              <Route path="/categories" element={
+                <ProtectedRoute>
+                  <AboutUs />
                 </ProtectedRoute>
               } />
               <Route path="/profile" element={

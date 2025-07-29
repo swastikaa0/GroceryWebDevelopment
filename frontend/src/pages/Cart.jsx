@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useCart } from '../hooks/useCart';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,9 @@ const Cart = () => {
 
   const totalPrice = getCartTotal();
   const itemCount = getCartCount();
+
+  // Debug log to see cart items structure
+  console.log('Cart items:', items);
 
   if (items.length === 0) {
     return (
@@ -52,8 +56,16 @@ const Cart = () => {
                 
                 <div className="flex items-center space-x-3">
                   <button
-                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    onClick={async () => {
+                      try {
+                        await updateQuantity(item.id, item.quantity - 1);
+                      } catch (error) {
+                        console.error('Error updating quantity:', error);
+                        alert('Failed to update quantity. Please try again.');
+                      }
+                    }}
                     className="p-1 rounded-md border border-gray-300 hover:bg-gray-50"
+                    disabled={item.quantity <= 1}
                   >
                     <Minus className="h-4 w-4" />
                   </button>
@@ -61,7 +73,14 @@ const Cart = () => {
                   <span className="w-12 text-center font-medium">{item.quantity}</span>
                   
                   <button
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    onClick={async () => {
+                      try {
+                        await updateQuantity(item.id, item.quantity + 1);
+                      } catch (error) {
+                        console.error('Error updating quantity:', error);
+                        alert('Failed to update quantity. Please try again.');
+                      }
+                    }}
                     className="p-1 rounded-md border border-gray-300 hover:bg-gray-50"
                   >
                     <Plus className="h-4 w-4" />
@@ -73,7 +92,14 @@ const Cart = () => {
                     ${(parseFloat(item.price || 0) * item.quantity).toFixed(2)}
                   </p>
                   <button
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={async () => {
+                      try {
+                        await removeFromCart(item.id);
+                      } catch (error) {
+                        console.error('Error removing item:', error);
+                        alert('Failed to remove item. Please try again.');
+                      }
+                    }}
                     className="text-red-600 hover:text-red-700 mt-2"
                   >
                     <Trash2 className="h-4 w-4" />
@@ -111,3 +137,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
