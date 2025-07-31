@@ -202,7 +202,3 @@ const Login = () => {
 };
 
 export default Login;
-//Login page 
-//this is login page 
-//this is login page 
-//this is login page
