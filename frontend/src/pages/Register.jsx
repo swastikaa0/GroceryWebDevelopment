@@ -223,3 +223,4 @@ const Register = () => {
 
 export default Register;
 
+//register page
